@@ -3,7 +3,7 @@ layout: default
 title: Algorithm | Tutorials and News
 ---
 
-<h1>Informative</h1>
+<h1>Algorithm</h1>
 <hr/>
 
 {% for category in site.categories %}
