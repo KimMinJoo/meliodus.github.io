@@ -1,5 +1,5 @@
 ---
-title: Code {web}
-short-description: Code that Might be Useful to Web Developer
+title: Web
+short-description: Web
 permalink: web
 ---
