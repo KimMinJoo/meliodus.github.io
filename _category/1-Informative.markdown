@@ -1,5 +1,5 @@
 ---
-title: Informative
-short-description: Tutorials and News
-permalink: informative
+title: Algorithm
+short-description: Algorithm
+permalink: Algorithm
 ---
