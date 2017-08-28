@@ -3,3 +3,53 @@ layout: post
 title: kNN Algorithm
 categories: [ml]
 ---
+### k-최근접 이웃 알고리즘(k-Nearest Neighbors)
+
+1.동작방식<br>
+트레이닝 데이터가 있으며 모든 데이터는 분류항목표시(labels)가 붙어 있다.<br>
+따라서 각가의 데이터가 어떤 분류항목으로 구분되는지 알 수 있다.<br>
+이후 새로운 데이터가 주어졌을 때 기존의 모든 데이터와 비교한다.<br>
+그리고 가장 유사한(근접한) 데이터의 분류 항목 표시를 살펴본다.<br>
+이때, 분류 항목을 이미 알고 있는 데이터 집합에서 상위 k개의 유사한 데이터를 살펴본다.<br>
+그 뒤 k개의 가장 유사한 데이터들 중 다수결을 통해 새로운 데이터의 분류 항목을 결정한다.<br>
+
+장점 - 높은 정확도, 오류데이터에 둔감, 데이터에 대한 가정이 없음<br>
+단점 - 계산 비용이 높음, 많은 메모리 요구<br>
+대상 - 수치적인 값, 명목적인 값.<br>
+
+2.sudo 코드<br>
+데이터 집합에 있는 모든 측정값 반복<br>
+    입력값과 현재 데이터 사이의 거리 계산<br>
+    오름차순으로 거리 정렬<br>
+    가장 가까운 거리에 있는 데이터 k개 추출<br>
+    k개 데이터에서 가장 많은 분류 찾기<br>
+가장많은 분류 반환<br>
+
+
+3.코드
+```python
+def kNNAlgorithm(inX, dataSet, labels, k):
+    #shape함수의 경우 array의 모양을 나타냄 위의 createDataSet에 따르면 4,2의 행렬이므로 [0]은 4, [1]은 2를 나타낸다.
+    dataSetSize = dataSet.shape[0]
+    #inX의 값으로 (dataSetSize,1)사이즈로 만들고 dataSet만큼 빼 dataSet과의 X축거리, Y축거리를 확보한다
+    diffMat = tile(inX, (dataSetSize, 1)) - dataSet
+    #거리를 구하기위해 제곱을 한다.
+    sqDiffMat = diffMat ** 2
+    print(sqDiffMat)
+    #axis = 0은 행  1은 열을 의미함. 행별로 더하는게 아니라 열별로 더한다.
+    sqDistances = sqDiffMat.sum(axis = 1)
+    #루트를 씌워 최종 거리를 구한다.
+    distances = sqDistances ** 0.5
+    #거리별로 index들을 정렬한다.
+    sortedDistIndicies = distances.argsort()
+    classCount={}
+    for i in range(k):
+        #가장 가까운 인덱스들의 라벨을 꺼낸다.
+        voteIlabel = labels[sortedDistIndicies[i]]
+        #classCount dictionary에서 각 라벨의 횟수를 가져와 1을 올려준다. 다만 없을경우 0으로 가져온다.
+        classCount[voteIlabel] = classCount.get(voteIlabel, 0) + 1
+    #dictionary 정렬 itemgetter가 0이면 키기준, 1이면 value기준
+    sortedClassCount = sorted(classCount.items(), key = operator.itemgetter(1), reverse = True)
+    #정렬된 dictionary에서 가장 첫밸류 리턴.
+    return sortedClassCount[0][0]
+```
