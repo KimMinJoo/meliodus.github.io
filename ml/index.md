@@ -3,7 +3,7 @@ layout: default
 title: Open Source Projects | Code that Might be Useful to You
 ---
 
-<h1>Open Source Projects</h1>
+<h1>Machin Learning</h1>
 <hr/>
 
 {% for category in site.categories %}

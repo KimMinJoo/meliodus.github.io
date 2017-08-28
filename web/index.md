@@ -3,7 +3,7 @@ layout: default
 title: Code {web} | Code that Might be Useful to Web Developer
 ---
 
-<h1>Code {web}</h1>
+<h1>Web</h1>
 <hr/>
 
 {% for category in site.categories %}

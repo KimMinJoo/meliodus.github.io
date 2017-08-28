@@ -1,7 +1,7 @@
 ---
 layout: post
 title: kNN Algorithm
-categories: [ml]
+categories: [MachineLearning]
 ---
 ### k-최근접 이웃 알고리즘(k-Nearest Neighbors)
 
