@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Informative | Tutorials and News
+title: Algorithm | Tutorials and News
 ---
 
 <h1>Informative</h1>
