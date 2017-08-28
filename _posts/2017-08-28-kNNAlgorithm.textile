@@ -1,0 +1,5 @@
+---
+layout: post
+title: kNN Algorithm
+categories: [ml]
+---
